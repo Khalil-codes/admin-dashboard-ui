@@ -52,8 +52,8 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
   }, [currentPage]);
 
   return (
-    <div className="flex justify-end gap-5 items-center flex-col-reverse sm:flex-row">
-      <span className="text-sm text-gray-700 dark:text-gray-400">
+    <div className="flex w-full sm:w-auto justify-end gap-5 items-center flex-col-reverse sm:flex-row">
+      <span className="block text-sm text-gray-700 dark:text-gray-400">
         Page{" "}
         <span className="font-semibold text-gray-900 dark:text-white">
           {currentPage}
@@ -63,7 +63,23 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
           {totalPages}
         </span>
       </span>
-      <div className="flex gap-2">
+      <div className="sm:hidden flex w-full justify-between">
+        <PagePill
+          disabled={currentPage === 1}
+          onClick={() => {
+            changePage("decrement");
+          }}>
+          Previous
+        </PagePill>
+        <PagePill
+          disabled={currentPage === totalPages}
+          onClick={() => {
+            changePage("increment");
+          }}>
+          Next
+        </PagePill>
+      </div>
+      <div className="hidden sm:flex sm:gap-2">
         <PagePill
           disabled={currentPage === 1}
           onClick={() => {

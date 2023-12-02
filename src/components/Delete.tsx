@@ -1,32 +1,31 @@
 import { useRootDispatch } from "@/context";
 import cn from "@/utils/cn";
-import React from "react";
-import { MdOutlineDelete } from "react-icons/md";
+import React, { MouseEvent } from "react";
 
-type Props = {
-  className?: string;
-  id: string;
-};
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  outline?: boolean;
+}
 
-const Delete = ({ className, id }: Props) => {
-  const dispatch = useRootDispatch();
-  const handleDelete = () => {
-    dispatch({ type: "DELETE", payload: id || "all" });
-  };
+const DeleteButton = ({
+  outline = false,
+  className,
+  children,
+  ...props
+}: Props) => {
   return (
     <button
       className={cn(
-        "p-2 border bg-white text-red-500 border-gray-200 hover:bg-slate-50",
+        "focus:outline-none text-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-3 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 disabled:cursor-not-allowed disabled:opacity-75 disabled:pointer-events-none",
         {
-          "bg-red-500 text-xl text-white rounded-md hover:bg-red-400":
-            id === "all",
+          "text-red-700 bg-transparent hover:text-white border border-red-700 hover:bg-red-800 focus:ring-red-300 dark:border-red-500 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900":
+            outline,
         },
         className
       )}
-      onClick={handleDelete}>
-      <MdOutlineDelete />
+      {...props}>
+      {children}
     </button>
   );
 };
 
-export default Delete;
+export default DeleteButton;

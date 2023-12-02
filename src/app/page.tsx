@@ -8,6 +8,7 @@ import { RECORDS_PER_PAGE } from "@/constants";
 import { useRoot } from "@/context";
 import usePagination from "@/hooks/usePagination";
 import { useSearchParams } from "next/navigation";
+import { MdOutlineDelete } from "react-icons/md";
 
 export default function Home() {
   const initialPage = Number(useSearchParams().get("page"));
@@ -28,17 +29,31 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col p-24">
+    <main className="p-5 bg-white dark:bg-gray-900 antialiased">
       <div className="flex py-3 justify-between w-full gap-4">
-        <Search className="w-1/2" />
-        {users.length > 0 && <Delete id="all" />}
+        <Search className="w-full sm:w-1/2" />
+        <Delete
+          disabled={users.length === 0}
+          outline
+          onClick={() => console.log("Delete")}>
+          <MdOutlineDelete />
+        </Delete>
       </div>
       <div className="py-3">
         <Table items={paginatedUsers} itemsPerPage={RECORDS_PER_PAGE} />
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between flex-col lg:flex-row gap-3 items-center">
         <div className="">
-          <span className="text-gray-500">0 of 46 row(s) selected</span>
+          <span className="text-sm text-gray-700 dark:text-gray-400">
+            <span className="font-semibold text-gray-900 dark:text-white">
+              {0}
+            </span>{" "}
+            of{" "}
+            <span className="font-semibold text-gray-900 dark:text-white">
+              {46}
+            </span>{" "}
+            row(s) selected
+          </span>
         </div>
         <Pagination
           changePage={changePage}

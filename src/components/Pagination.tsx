@@ -13,7 +13,7 @@ const PagePill = ({
   return (
     <button
       className={cn(
-        "border border-solid border-gray-300 font-semibold min-w-[40px] text-xs rounded-lg p-1.5 hover:bg-gray-200 disabled:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed",
+        "flex items-center rounded-md justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:dark:hover:border-gray-700 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-400 disabled:hover:text-gray-500 disabled:hover:bg-white disabled:hover:border-gray-300",
         className
       )}
       {...buttonProps}>
@@ -52,9 +52,16 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
   }, [currentPage]);
 
   return (
-    <div className="flex justify-end gap-10 items-center">
-      <span className="text-sm font-bold">
-        Page {currentPage} of {totalPages}
+    <div className="flex justify-end gap-5 items-center flex-col-reverse sm:flex-row">
+      <span className="text-sm text-gray-700 dark:text-gray-400">
+        Page{" "}
+        <span className="font-semibold text-gray-900 dark:text-white">
+          {currentPage}
+        </span>{" "}
+        of{" "}
+        <span className="font-semibold text-gray-900 dark:text-white">
+          {totalPages}
+        </span>
       </span>
       <div className="flex gap-2">
         <PagePill
@@ -62,38 +69,15 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
           onClick={() => {
             changePage("first");
           }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
-            />
-          </svg>
+          <PreviousButton />
+          <PreviousButton />
         </PagePill>
         <PagePill
           disabled={currentPage === 1}
           onClick={() => {
             changePage("decrement");
           }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
+          <PreviousButton />
         </PagePill>
         {generatePagesArray(totalPages, currentPage).map((page, index) =>
           page ? (
@@ -101,7 +85,7 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
               disabled={page === currentPage}
               key={page}
               className={cn({
-                "bg-sky-700/75 text-white disabled:opacity-1 disabled:bg-sky-700/75 disabled:pointer-events-none":
+                "z-10 text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:bg-gray-700 dark:text-white disabled:opacity-1 disabled:pointer-events-none":
                   page === currentPage,
               })}
               onClick={() => {
@@ -118,38 +102,15 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
           onClick={() => {
             changePage("increment");
           }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
+          <NextPage />
         </PagePill>
         <PagePill
           disabled={currentPage === totalPages}
           onClick={() => {
             changePage("last");
           }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
+          <NextPage />
+          <NextPage />
         </PagePill>
       </div>
     </div>
@@ -157,3 +118,43 @@ const Pagination = ({ changePage, currentPage, totalPages }: Props) => {
 };
 
 export default Pagination;
+
+const PreviousButton = () => (
+  <>
+    <span className="sr-only">Previous</span>
+    <svg
+      className="w-2.5 h-2.5 rtl:rotate-180"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 6 10">
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 1 1 5l4 4"
+      />
+    </svg>
+  </>
+);
+
+const NextPage = () => (
+  <>
+    <span className="sr-only">Next</span>
+    <svg
+      className="w-2.5 h-2.5 rtl:rotate-180"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 6 10">
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="m1 9 4-4-4-4"
+      />
+    </svg>
+  </>
+);

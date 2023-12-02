@@ -1,5 +1,8 @@
 import { useRootDispatch } from "@/context";
 import React, { ChangeEvent, useState } from "react";
+import Checkbox from "./Checkbox";
+
+const tableHeadClasses = "px-6 py-3";
 
 const TableHeader = () => {
   const dispatch = useRootDispatch();
@@ -9,21 +12,21 @@ const TableHeader = () => {
     setChecked(event.target.checked);
   };
   return (
-    <thead className="border border-b-gray-300 text-neutral-700 ">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-        <th className="py-3 px-3 text-center">
-          <input
-            type="checkbox"
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
-            value={"all"}
-            onChange={handleCheckAll}
-            checked={checked}
-          />
+        <th scope="col" className="p-4">
+          <Checkbox checked onChange={handleCheckAll} />
         </th>
-        <th className="py-3 px-2 text-start">Name</th>
-        <th className="py-3 px-2 text-start">Email</th>
-        <th className="py-3 px-2 text-start">Role</th>
-        <th className="py-3 px-2 text-start" colSpan={2}>
+        <th scope="col" className="px-6 py-3">
+          Name
+        </th>
+        <th scope="col" className="px-6 py-3">
+          Email
+        </th>
+        <th scope="col" className="px-6 py-3">
+          Role
+        </th>
+        <th scope="col" className="px-6 py-3">
           Actions
         </th>
       </tr>

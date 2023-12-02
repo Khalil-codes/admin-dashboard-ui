@@ -12,26 +12,28 @@ type Props = {
 
 const Table = ({ items, itemsPerPage }: Props) => {
   return (
-    <table className="w-full border border-gray-200 rounded-md">
-      <TableHeader />
-      <tbody>
-        {padArrayEnd(items, itemsPerPage, null).map((item, index) =>
-          item ? (
-            <TableRow item={item} key={index} index={index} />
-          ) : (
-            <tr
-              className={cn("border-b border-b-gray-300 h-[60px]")}
-              key={index}>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          )
-        )}
-      </tbody>
-    </table>
+    <div className="relative overflow-x-auto">
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <TableHeader />
+        <tbody>
+          {padArrayEnd(items, itemsPerPage, null).map((item, index) =>
+            item ? (
+              <TableRow item={item} key={index} index={index} />
+            ) : (
+              <tr
+                className={cn("border-b border-b-gray-300 h-[60px]")}
+                key={index}>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

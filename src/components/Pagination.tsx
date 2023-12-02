@@ -13,7 +13,7 @@ const PagePill = ({
   return (
     <button
       className={cn(
-        "flex items-center rounded-md justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:dark:hover:border-gray-700 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-400 disabled:hover:text-gray-500 disabled:hover:bg-white disabled:hover:border-gray-300",
+        "flex items-center select-none rounded-md justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:dark:hover:border-gray-700 disabled:dark:hover:bg-gray-800 disabled:dark:hover:text-gray-400 disabled:hover:text-gray-500 disabled:hover:bg-white disabled:hover:border-gray-300",
         className
       )}
       {...buttonProps}>

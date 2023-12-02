@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <main className="p-5 bg-white dark:bg-gray-900 antialiased">
+    <main>
       <div className="flex py-3 justify-between w-full gap-4">
         <Search className="w-full sm:w-1/2" />
         <Delete
@@ -39,22 +39,20 @@ export default function Home() {
           <MdOutlineDelete />
         </Delete>
       </div>
-      <div className="py-3">
+      <div className="py-3 min-h-[745px]">
         <Table items={paginatedUsers} itemsPerPage={RECORDS_PER_PAGE} />
       </div>
       <div className="flex justify-between flex-col lg:flex-row gap-3 items-center">
-        <div className="">
-          <span className="text-sm text-gray-700 dark:text-gray-400">
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {0}
-            </span>{" "}
-            of{" "}
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {46}
-            </span>{" "}
-            row(s) selected
-          </span>
-        </div>
+        <span className="text-sm text-gray-700 dark:text-gray-400">
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {0}
+          </span>{" "}
+          of{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {46}
+          </span>{" "}
+          row(s) selected
+        </span>
         <Pagination
           changePage={changePage}
           currentPage={currentPage}

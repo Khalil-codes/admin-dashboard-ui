@@ -21,9 +21,9 @@ const Table = ({ items, itemsPerPage }: Props) => {
               <TableRow item={item} key={index} index={index} />
             ) : (
               <tr
-                className={cn("border-b border-b-gray-300 h-[60px]")}
+                className="bg-white border-b h-[67px] dark:bg-gray-800 dark:border-gray-700"
                 key={index}>
-                <td></td>
+                <td className="px-6 py-4"></td>
                 <td></td>
                 <td></td>
                 <td></td>
